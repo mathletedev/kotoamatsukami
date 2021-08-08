@@ -1,4 +1,4 @@
-# k<img src="https://qph.fs.quoracdn.net/main-qimg-f611551d461bae7de8a32cc94cbe20ad" width=16>toamatsukami
+# k<img src="https://qph.fs.quoracdn.net/main-qimg-f611551d461bae7de8a32cc94cbe20ad" height="16">toamatsukami
 
 > A TypeScript ML library
 
