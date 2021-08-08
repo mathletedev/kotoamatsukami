@@ -1,2 +1,3 @@
 # kotoamatsukami
-A TypeScript genetic algorithm / ML library
+
+> A TypeScript ML library

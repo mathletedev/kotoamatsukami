@@ -1,0 +1,28 @@
+{
+	"name": "kotoamatsukami",
+	"version": "0.0.1",
+	"description": "A TypeScript ML library",
+	"main": "lib/index.js",
+	"scripts": {
+		"watch": "tsc -w"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/mathletedev/kotoamatsukami.git"
+	},
+	"author": {
+		"name": "mathletedev",
+		"email": "mathletedev@gmail.com"
+	},
+	"license": "Apache-2.0",
+	"bugs": {
+		"url": "https://github.com/mathletedev/kotoamatsukami/issues"
+	},
+	"homepage": "https://github.com/mathletedev/kotoamatsukami#readme",
+	"devDependencies": {
+		"typescript": "^4.3.5"
+	},
+	"dependencies": {
+		"mathjs": "^9.4.4"
+	}
+}
