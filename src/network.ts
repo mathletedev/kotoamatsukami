@@ -81,8 +81,6 @@ export class Network {
 			errors = multiply(transpose(this.weights[i]), errors);
 			gradients = layer.map(this.derivative);
 		}
-
-		return outputs.toArray();
 	}
 
 	public train(
@@ -91,12 +89,11 @@ export class Network {
 		epochs: number,
 		logging = false
 	) {
-		for (let i = 0; i < epochs; i++) {
-			for (let x = 0; x < inputs.length; x++) {
-				const outputs = this.backPropagate(inputs[x], targets[x]);
-
-				if (logging) console.log(`Epoch [ ${i} ] | ${outputs}`);
-			}
+		for (let i = 1; i <= epochs; i++) {
+			if (logging && i % (epochs / 100) === 0)
+				console.log(`Epoch [ ${i} / ${epochs} ]`);
+			for (let x = 0; x < inputs.length; x++)
+				this.backPropagate(inputs[x], targets[x]);
 		}
 	}
 
