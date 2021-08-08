@@ -3,6 +3,7 @@
 	"version": "0.0.1",
 	"description": "A TypeScript ML library",
 	"main": "lib/index.js",
+	"types": "lib",
 	"scripts": {
 		"watch": "tsc -w"
 	},
@@ -19,10 +20,14 @@
 		"url": "https://github.com/mathletedev/kotoamatsukami/issues"
 	},
 	"homepage": "https://github.com/mathletedev/kotoamatsukami#readme",
-	"devDependencies": {
-		"typescript": "^4.3.5"
-	},
+	"keywords": [
+		"machine-learning",
+		"neural-network"
+	],
 	"dependencies": {
 		"mathjs": "^9.4.4"
+	},
+	"devDependencies": {
+		"typescript": "^4.3.5"
 	}
 }
