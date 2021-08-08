@@ -1,4 +1,16 @@
-# k<img src="https://qph.fs.quoracdn.net/main-qimg-f611551d461bae7de8a32cc94cbe20ad" height="20em">toamatsukami
+<div align="center">
+	<h1>
+		k<img src="https://qph.fs.quoracdn.net/main-qimg-f611551d461bae7de8a32cc94cbe20ad" height="20em" />toamatsukami
+	</h1>
+	<p>
+		<a href="https://www.npmjs.com/package/kotoamatsukami">
+			<img src="https://img.shields.io/npm/v/kotoamatsukami.svg?maxAge=3600" />
+		</a>
+		<a href="https://www.npmjs.com/package/kotoamatsukami">
+			<img src="https://img.shields.io/npm/dt/kotoamatsukami.svg?maxAge=3600" />
+		</a>
+	</p>
+</div>
 
 > A TypeScript ML library
 

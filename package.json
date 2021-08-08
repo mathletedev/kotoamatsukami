@@ -1,6 +1,6 @@
 {
 	"name": "kotoamatsukami",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "A TypeScript ML library",
 	"main": "lib/index.js",
 	"types": "lib",
