@@ -1,3 +1,4 @@
+import { readFileSync, writeFileSync } from "fs";
 import {
 	add,
 	dotMultiply,
@@ -32,7 +33,7 @@ export class Network {
 			learningRate = 0.5
 		}: NetworkOptions = {}
 	) {
-		if (!layers.length) throw "Network must have at least one layer";
+		if (!layers.length) throw "Network must have at least 1 layer";
 
 		this.weights = layers
 			.slice(0, -1)
@@ -49,7 +50,7 @@ export class Network {
 	private feedForward(inputs: number[]) {
 		const inputsLength = this.weights[0].size()[1];
 		if (inputs.length !== inputsLength)
-			throw `Inputs must be of length ${inputsLength}`;
+			throw `Inputs must be of length [ ${inputsLength} ]`;
 
 		let current = transpose(matrix([inputs]));
 
@@ -68,7 +69,7 @@ export class Network {
 	private backPropagate(inputs: number[], targets: number[]) {
 		const targetsLength = this.weights[this.weights.length - 1].size()[0];
 		if (targets.length !== targetsLength)
-			throw `Targets must be of length ${targetsLength}`;
+			throw `Targets must be of length [ ${targetsLength} ]`;
 
 		const outputs = this.feedForward(inputs);
 
@@ -109,5 +110,45 @@ export class Network {
 
 	public predict(inputs: number[]) {
 		return this.feedForward(inputs).toArray()[0];
+	}
+
+	public save(file: string) {
+		if (!file.endsWith(".json")) throw "Save file must be of format [ JSON ]";
+
+		const directory = `${process.cwd()}/${file}`;
+		try {
+			writeFileSync(
+				directory,
+				JSON.stringify({
+					w: this.weights.map((weight) => weight.toArray()),
+					b: this.biases.map((bias) => bias.toArray())
+				}),
+				{
+					flag: "wx"
+				}
+			);
+		} catch (err) {
+			if ((err as Error).message.startsWith("EEXIST"))
+				throw `File [ ${directory} ] already exists`;
+		}
+	}
+
+	public load(file: string) {
+		if (!file.endsWith(".json")) throw "Load file must be of format [ JSON ]";
+
+		const directory = `${process.cwd()}/${file}`;
+		try {
+			const data = JSON.parse(readFileSync(directory).toString());
+
+			if (!data.w?.length || !data.b?.length) throw "a";
+
+			this.weights = data.w.map((weight: number[][]) => matrix(weight));
+			this.biases = data.b.map((bias: number[][]) => matrix(bias));
+		} catch (err) {
+			if (err === "a") throw "Invalid load file data";
+			if ((err as Error).message.startsWith("ENOENT"))
+				throw `File [ ${directory} ] does not exist`;
+			throw "Matrix sizes of load file data are invalid";
+		}
 	}
 }
