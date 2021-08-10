@@ -32,6 +32,8 @@ export class Network {
 			learningRate = 0.5
 		}: NetworkOptions = {}
 	) {
+		if (!layers.length) throw "Network must have at least one layer";
+
 		this.weights = layers
 			.slice(0, -1)
 			.map((layer, i) => random<Matrix>(matrix([layers[i + 1], layer]), -1, 1));
@@ -45,6 +47,10 @@ export class Network {
 	}
 
 	private feedForward(inputs: number[]) {
+		const inputsLength = this.weights[0].size()[1];
+		if (inputs.length !== inputsLength)
+			throw `Inputs must be of length ${inputsLength}`;
+
 		let current = transpose(matrix([inputs]));
 
 		this.data = [current];
@@ -60,6 +66,10 @@ export class Network {
 	}
 
 	private backPropagate(inputs: number[], targets: number[]) {
+		const targetsLength = this.weights[this.weights.length - 1].size()[0];
+		if (targets.length !== targetsLength)
+			throw `Targets must be of length ${targetsLength}`;
+
 		const outputs = this.feedForward(inputs);
 
 		let errors = subtract(matrix([targets]), outputs) as Matrix;
